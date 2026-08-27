@@ -115,12 +115,12 @@ spec:
           periodSeconds: 15
         volumeMounts:
         - name: nginx-conf
-          mountpath: /etc/nginx/nginx.conf
-          subpath: nginx.conf
+          mountPath: /etc/nginx/nginx.conf
+          subPath: nginx.conf
       volumes:
       - name: nginx-conf
-      ConfigMap:
-      - name: frontend
+        configMap:
+         name: frontend
 
 ---
 #service
