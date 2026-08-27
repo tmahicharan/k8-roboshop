@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mongodb
-  namespcae: roboshop
+  namespace: roboshop
   # these are replica set labels
   labels:
     component: mongodb
@@ -45,7 +45,6 @@ spec:
   selector:
    component: mongodb
    project: roboshop
-   env: dev
   ports:
     - protocol: TCP
       port: 27017
