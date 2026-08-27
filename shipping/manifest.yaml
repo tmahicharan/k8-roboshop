@@ -44,13 +44,13 @@ spec:
           httpGet:
             path: /health
             port: liveness-port
-          failureThreshold: 1
+          failureThreshold: 3
           periodSeconds: 15
         readinessProbe:
           httpGet:
             path: /health
             port: liveness-port
-          failureThreshold: 1
+          failureThreshold: 3
           periodSeconds: 15
 ---
 #service
