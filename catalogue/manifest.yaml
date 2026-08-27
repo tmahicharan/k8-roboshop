@@ -11,7 +11,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: catalogue
-  namespcae: roboshop
+  namespace: roboshop
   # these are replica set labels
   labels:
     component: catalogue
@@ -32,7 +32,7 @@ spec:
     spec:
       containers:
       - name: catalogue
-        image: tmahicharan/catalogue:v1
+        image: mahicharan/catalogue:v1
         imagePullPolicy: Always
         envFrom:
         - configMapRef:
@@ -63,7 +63,6 @@ spec:
   selector:
    component: catalogue
    project: roboshop
-   env: dev
   ports:
     - protocol: TCP
       port: 8080
