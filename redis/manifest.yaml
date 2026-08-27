@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis
+  namespcae: roboshop
+  # these are replica set labels
+  labels:
+    component: redis
+    project: roboshop
+spec:
+  replicas: 1
+  selector:
+    # these labels are used to select pods
+    matchLabels:
+      component: redis
+      project: roboshop
+  # pod definition
+  template:
+    metadata:
+      labels:
+        component: redis
+        project: roboshop
+    spec:
+      containers:
+      - name: redis
+        image: redis:7.0
+        readinessProbe:
+          tcpSocket:
+            port: 6379
+          initialDelaySeconds: 10
+          periodSeconds: 10
+        livenessProbe:
+          tcpSocket:
+            port: 6379
+          initialDelaySeconds: 5
+          periodSeconds: 5
+---
+#service
+apiVersion: v1
+kind: Service
+metadata:
+ name: redis
+ namespace: roboshop
+spec:
+  selector:
+   component: redis
+   project: roboshop
+   env: dev
+  ports:
+    - protocol: TCP
+      port: 6379
+      targetPort: 6379
+
+ 
