@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: rabbitmq
-  namespcae: roboshop
+  namespace: roboshop
   # these are replica set labels
   labels:
     component: rabbitmq
@@ -51,7 +51,6 @@ spec:
   selector:
    component: rabbitmq
    project: roboshop
-   env: dev
   ports:
     - protocol: TCP
       port: 5672

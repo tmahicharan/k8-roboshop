@@ -72,7 +72,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend
-  namespcae: roboshop
+  namespace: roboshop
   # these are replica set labels
   labels:
     component: frontend
@@ -93,11 +93,11 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: tmahicharan/frontend:v1
+        image: mahicharan/frontend:v1
         imagePullPolicy: Always
         envFrom:
         - configMapRef:
-          name: frontend
+            name: frontend
         ports:
         - name: liveness-port
           containerPort: 8080
@@ -134,7 +134,6 @@ spec:
   selector:
    component: frontend
    project: roboshop
-   env: dev
   ports:
     - protocol: TCP
       port: 80

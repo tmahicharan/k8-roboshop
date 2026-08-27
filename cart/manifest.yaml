@@ -12,7 +12,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: cart
-  namespcae: roboshop
+  namespace: roboshop
   # these are replica set labels
   labels:
     component: cart
@@ -33,7 +33,7 @@ spec:
     spec:
       containers:
       - name: cart
-        image: tmahicharan/cart:v1
+        image: mahicharan/cart:v1
         imagePullPolicy: Always
         envFrom:
         - configMapRef:
@@ -43,13 +43,13 @@ spec:
           containerPort: 8080
         livenessProbe:
           httpGet:
-            path: /healthz
+            path: /health
             port: 8080
           failureThreshold: 1
           periodSeconds: 15
         readinessProbe:
           httpGet:
-            path: /healthz
+            path: /health
             port: 8080
           failureThreshold: 1
           periodSeconds: 15
@@ -64,7 +64,6 @@ spec:
   selector:
    component: cart
    project: roboshop
-   env: dev
   ports:
     - protocol: TCP
       port: 8080

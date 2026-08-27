@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: redis
-  namespcae: roboshop
+  namespace: roboshop
   # these are replica set labels
   labels:
     component: redis
@@ -45,7 +45,6 @@ spec:
   selector:
    component: redis
    project: roboshop
-   env: dev
   ports:
     - protocol: TCP
       port: 6379

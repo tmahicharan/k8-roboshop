@@ -12,7 +12,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mysql
-  namespcae: roboshop
+  namespace: roboshop
   # these are replica set labels
   labels:
     component: mysql
@@ -33,7 +33,7 @@ spec:
     spec:
       containers:
       - name: mysql
-        image: tmahicharan/mysql:v1
+        image: mahicharan/mysql:v1
         # readinessProbe:
         #   tcpSocket:
         #     port: 3306
@@ -65,7 +65,6 @@ spec:
   selector:
    component: mysql
    project: roboshop
-   env: dev
   ports:
     - protocol: TCP
       port: 3306

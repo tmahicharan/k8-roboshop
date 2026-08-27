@@ -16,7 +16,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: payment
-  namespcae: roboshop
+  namespace: roboshop
   # these are replica set labels
   labels:
     component: payment
@@ -37,23 +37,23 @@ spec:
     spec:
       containers:
       - name: payment
-        image: tmahicharan/payment:v1
+        image: mahicharan/payment:v1
         imagePullPolicy: Always
         envFrom:
         - configMapRef:
-          name: payment
+            name: payment
         ports:
         - name: liveness-port
           containerPort: 8080
         livenessProbe:
           httpGet:
-            path: /healthz
+            path: /health
             port: 8080
           failureThreshold: 1
           periodSeconds: 15
         readinessProbe:
           httpGet:
-            path: /healthz
+            path: /health
             port: 8080
           failureThreshold: 1
           periodSeconds: 15
@@ -68,7 +68,6 @@ spec:
   selector:
    component: payment
    project: roboshop
-   env: dev
   ports:
     - protocol: TCP
       port: 8080

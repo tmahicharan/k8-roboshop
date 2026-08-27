@@ -12,7 +12,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: user
-  namespcae: roboshop
+  namespace: roboshop
   # these are replica set labels
   labels:
     component: user
@@ -33,23 +33,23 @@ spec:
     spec:
       containers:
       - name: user
-        image: tmahicharan/user:v1
+        image: mahicharan/user:v1
         imagePullPolicy: Always
         envFrom:
         - configMapRef:
-          name: user
+            name: user
         ports:
         - name: liveness-port
           containerPort: 8080
         livenessProbe:
           httpGet:
-            path: /healthz
+            path: /health
             port: 8080
           failureThreshold: 1
           periodSeconds: 15
         readinessProbe:
           httpGet:
-            path: /healthz
+            path: /health
             port: 8080
           failureThreshold: 1
           periodSeconds: 15
@@ -64,7 +64,6 @@ spec:
   selector:
    component: user
    project: roboshop
-   env: dev
   ports:
     - protocol: TCP
       port: 8080
