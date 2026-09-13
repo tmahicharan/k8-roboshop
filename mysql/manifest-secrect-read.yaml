@@ -48,7 +48,7 @@ spec:
           mountPath: /tmp
       containers:
       - name: mysql
-        image: mahicharan/mysql:v2
+        image: mahicharan/mysql:v3
         imagePullPolicy: Always
         volumeMounts:
         - name: mysql-config
